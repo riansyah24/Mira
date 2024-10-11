@@ -17,7 +17,7 @@ setInterval(() => {
   let day = date.getDay()
   //eksekusi
   if(minute%5 == 1) {
-    run("testing")
+    run("test")
     .then(res => console.log("AI berhasil tersambung pada pukul " + hour + ":" + minute))
     .catch(err => {
       console.log("AI gagal tersambung pada pukul " + hour + ":" + minute)
@@ -37,7 +37,7 @@ setInterval(() => {
     secondsIf = Math.round(Math.random()*60)
   }
   //malam minggu
-  else if(day == 6 && hour == (19 + Math.floor(Math.random()*3)) && minute == minuteIf) {
+  else if(day == 6 && hour == (19 + Math.floor(Math.random()*3)) && minute == (30 + Math.round(Math.random()*28))) {
     run("Model mengucapkan selamat malam minggu kepada user dan bertanya lagi ngapain ke user ")
     .then(res => {
       const cleanedRes = res.replace(/\n/g, "");
@@ -107,7 +107,6 @@ bot.on('message', (msg) => {
     const cleanedRes = res.replace(/\n/g, "");
     postData("model", cleanedRes)
     postData("user", text)
-    console.log(chatId)
     bot.sendMessage(chatId, cleanedRes)
   })
 });
