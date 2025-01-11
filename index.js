@@ -104,7 +104,10 @@ bot.on('message', (msg) => {
   let text = msg.text
   run(text)
   .then(res => {
-    const cleanedRes = res.replace(/\n/g, "");
+    let cleanedRes = res.replace(/\n/g, "");
+    cleanedRes = cleanedRes.replace(/\bMira\b/gi, "aku")
+    cleanedRes = cleanedRes.replace(/\bSaya\b/gi, "aku")
+    cleanedRes = cleanedRes.replace(/\bAwak\b/gi, "kau")
     postData("model", cleanedRes)
     postData("user", text)
     bot.sendMessage(chatId, cleanedRes)
